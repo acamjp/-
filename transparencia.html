@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transparência - ACAM CUFA Paraíba</title>
+    <!-- Fontes Google -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Ícones Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* ===== RESET E VARIÁVEIS ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #332e7d;
+            --primary-light: #4c54af;
+            --secondary: #ff2f00;
+            --secondary-light: #ff774d;
+            --dark: #263238;
+            --light: #F5F9FF;
+            --gray: #ECEFF1;
+            --white: #FFFFFF;
+            --shadow: 0 10px 30px rgba(0,0,0,0.1);
+            --border-radius: 12px;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: var(--dark);
+            background-color: var(--light);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* ===== CABEÇALHO ===== */
+        header {
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo h1 {
+            font-size: 1.8rem;
+            color: var(--primary);
+        }
+
+        .nav-menu ul {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-menu a {
+            font-weight: 600;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-menu a:hover {
+            color: var(--secondary);
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: var(--secondary);
+            transition: width 0.3s;
+        }
+
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+
+        /* ===== HERO DA PÁGINA TRANSPARÊNCIA ===== */
+        .transparencia-hero {
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: white;
+            padding: 4rem 5%;
+            text-align: center;
+        }
+
+        .transparencia-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .transparencia-hero p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+        /* ===== INTRODUÇÃO ===== */
+        .intro {
+            padding: 4rem 5%;
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .intro h2 {
+            color: var(--primary);
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .intro p {
+            font-size: 1.2rem;
+            color: var(--dark);
+        }
+
+        /* ===== LINHA DO TEMPO ===== */
+        .timeline {
+            padding: 4rem 5%;
+            background: var(--white);
+        }
+
+        .timeline-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 3rem;
+        }
+
+        .timeline-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .timeline-container::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 100%;
+            background: var(--secondary);
+            border-radius: 2px;
+        }
+
+        .timeline-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .timeline-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .timeline-content {
+            width: 45%;
+            background: var(--light);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            position: relative;
+        }
+
+        .timeline-content::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            width: 20px;
+            height: 20px;
+            background: var(--secondary);
+            border-radius: 50%;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content::before {
+            right: -40px;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content::before {
+            left: -40px;
+        }
+
+        .timeline-year {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-content h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .timeline-docs {
+            margin-top: 1rem;
+            list-style: none;
+        }
+
+        .timeline-docs li {
+            margin: 0.5rem 0;
+        }
+
+        .timeline-docs a {
+            color: var(--primary);
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: color 0.3s;
+        }
+
+        .timeline-docs a:hover {
+            color: var(--secondary);
+        }
+
+        .timeline-docs i {
+            color: var(--secondary);
+        }
+
+        @media (max-width: 768px) {
+            .timeline-container::before {
+                left: 30px;
+            }
+            .timeline-item {
+                flex-direction: column !important;
+                align-items: flex-start;
+                margin-left: 60px;
+            }
+            .timeline-content {
+                width: 100%;
+            }
+            .timeline-content::before {
+                left: -40px !important;
+                right: auto !important;
+            }
+        }
+
+        /* ===== CARDS DE DOCUMENTOS POR ANO ===== */
+        .documentos {
+            padding: 4rem 5%;
+        }
+
+        .documentos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .documento-card {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s;
+            text-align: center;
+        }
+
+        .documento-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .documento-card h3 {
+            color: var(--primary);
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .documento-card ul {
+            list-style: none;
+            text-align: left;
+        }
+
+        .documento-card li {
+            margin: 1rem 0;
+            border-bottom: 1px solid var(--gray);
+            padding-bottom: 0.5rem;
+        }
+
+        .documento-card a {
+            color: var(--primary);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: color 0.3s;
+        }
+
+        .documento-card a:hover {
+            color: var(--secondary);
+        }
+
+        .documento-card i {
+            color: var(--secondary);
+            width: 20px;
+        }
+
+        /* ===== PLANILHAS ===== */
+        .planilhas {
+            padding: 4rem 5%;
+            background: var(--light);
+        }
+
+        .planilhas-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 2rem;
+        }
+
+        .planilhas-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .planilha-card {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .planilha-icon {
+            font-size: 3rem;
+            color: var(--secondary);
+        }
+
+        .planilha-info h4 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .planilha-info a {
+            color: var(--secondary);
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* ===== BOTÃO ===== */
+        .btn {
+            display: inline-block;
+            background: var(--secondary);
+            color: var(--white);
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: background 0.3s, transform 0.2s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: var(--secondary-light);
+            transform: scale(1.05);
+        }
+
+        /* ===== RODAPÉ ===== */
+        footer {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        footer a {
+            color: var(--secondary);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Cabeçalho -->
+    <header>
+        <div class="logo">
+            <h1>ACAM</h1>
+        </div>
+        <nav class="nav-menu">
+            <ul>
+                <li><a href="index.html">Início</a></li>
+                <li><a href="trabalho.html">Nossa História</a></li>
+                <li><a href="atividades.html">Atividades</a></li>
+                <li><a href="noticias.html">Notícias</a></li>
+                <li><a href="transparencia.html" style="color: var(--secondary);">Transparência</a></li>
+                <li><a href="faca_parte.html">Faça parte</a></li>
+                <li><a href="index.html">Contatos</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero -->
+        <section class="transparencia-hero">
+            <h1>Transparência</h1>
+            <p>Prestação de contas e acesso à informação. Nosso compromisso com a comunidade.</p>
+        </section>
+
+        <!-- Introdução -->
+        <section class="intro">
+            <h2>Compromisso com a clareza</h2>
+            <p>A ACAM e a CUFA Paraíba acreditam que a transparência é a base da confiança. Disponibilizamos aqui todos os nossos relatórios, balanços e planilhas para consulta e download.</p>
+        </section>
+
+        <!-- Linha do Tempo com Documentos -->
+        <section class="timeline">
+            <h2 class="timeline-title">Nossa trajetória em documentos</h2>
+            <div class="timeline-container">
+                <!-- Item 2026 -->
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">2026</div>
+                        <h3>Relatórios e balanços</h3>
+                        <ul class="timeline-docs">
+                            <li><a href="#" download><i class="fas fa-file-pdf"></i> Relatório de atividades 2026 (PDF)</a></li>
+                            <li><a href="#" download><i class="fas fa-file-excel"></i> Balanço patrimonial 2026 (XLSX)</a></li>
+                            <li><a href="#" download><i class="fas fa-file-pdf"></i> Prestação de contas - Projetos (PDF)</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Item 2025 -->
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">2025</div>
+                        <h3>Relatórios e balanços</h3>
+                        <ul class="timeline-docs">
+                            <li><a href="#" download><i class="fas fa-file-pdf"></i> Relatório de atividades 2025 (PDF)</a></li>
+                            <li><a href="#" download><i class="fas fa-file-excel"></i> Balanço patrimonial 2025 (XLSX)</a></li>
+                            <li><a href="#" download><i class="fas fa-file-pdf"></i> Prestação de contas - Lei de Incentivo (PDF)</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Item 2024 -->
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">2024</div>
+                        <h3>Relatórios e balanços</h3>
+                        <ul class="timeline-docs">
+                            <li><a href="#" download><i class="fas fa-file-pdf"></i> Relatório de atividades 2024 (PDF)</a></li>
+                            <li><a href="#" download><i class="fas fa-file-excel"></i> Balanço patrimonial 2024 (XLSX)</a></li>
+                            <li><a href="#" download><i class="fas fa-file-pdf"></i> Auditoria independente (PDF)</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Item 2023 -->
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">2023</div>
+                        <h3>Relatórios e balanços</h3>
+                        <ul class="timeline-docs">
+                            <li><a href="#" download><i class="fas fa-file-pdf"></i> Relatório de atividades 2023 (PDF)</a></li>
+                            <li><a href="#" download><i class="fas fa-file-excel"></i> Balanço patrimonial 2023 (XLSX)</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Item 2022 -->
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">2022</div>
+                        <h3>Relatórios e balanços</h3>
+                        <ul class="timeline-docs">
+                            <li><a href="#" download><i class="fas fa-file-pdf"></i> Relatório de atividades 2022 (PDF)</a></li>
+                            <li><a href="#" download><i class="fas fa-file-excel"></i> Balanço patrimonial 2022 (XLSX)</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cards por ano (visão rápida) -->
+        <section class="documentos">
+            <h2 style="text-align: center; color: var(--primary); margin-bottom: 2rem;">Documentos por ano</h2>
+            <div class="documentos-grid">
+                <div class="documento-card">
+                    <h3>2026</h3>
+                    <ul>
+                        <li><a href="#" download><i class="fas fa-file-pdf"></i> Relatório 2026</a></li>
+                        <li><a href="#" download><i class="fas fa-file-excel"></i> Balanço 2026</a></li>
+                        <li><a href="#" download><i class="fas fa-file-pdf"></i> Projetos</a></li>
+                    </ul>
+                </div>
+                <div class="documento-card">
+                    <h3>2025</h3>
+                    <ul>
+                        <li><a href="#" download><i class="fas fa-file-pdf"></i> Relatório 2025</a></li>
+                        <li><a href="#" download><i class="fas fa-file-excel"></i> Balanço 2025</a></li>
+                        <li><a href="#" download><i class="fas fa-file-pdf"></i> Lei de Incentivo</a></li>
+                    </ul>
+                </div>
+                <div class="documento-card">
+                    <h3>2024</h3>
+                    <ul>
+                        <li><a href="#" download><i class="fas fa-file-pdf"></i> Relatório 2024</a></li>
+                        <li><a href="#" download><i class="fas fa-file-excel"></i> Balanço 2024</a></li>
+                        <li><a href="#" download><i class="fas fa-file-pdf"></i> Auditoria</a></li>
+                    </ul>
+                </div>
+                <div class="documento-card">
+                    <h3>2023</h3>
+                    <ul>
+                        <li><a href="#" download><i class="fas fa-file-pdf"></i> Relatório 2023</a></li>
+                        <li><a href="#" download><i class="fas fa-file-excel"></i> Balanço 2023</a></li>
+                    </ul>
+                </div>
+                <div class="documento-card">
+                    <h3>2022</h3>
+                    <ul>
+                        <li><a href="#" download><i class="fas fa-file-pdf"></i> Relatório 2022</a></li>
+                        <li><a href="#" download><i class="fas fa-file-excel"></i> Balanço 2022</a></li>
+                    </ul>
+                </div>
+                <div class="documento-card">
+                    <h3>2021</h3>
+                    <ul>
+                        <li><a href="#" download><i class="fas fa-file-pdf"></i> Relatório 2021</a></li>
+                        <li><a href="#" download><i class="fas fa-file-excel"></i> Balanço 2021</a></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Planilhas detalhadas -->
+        <section class="planilhas">
+            <h2 class="planilhas-title">Planilhas e demonstrativos</h2>
+            <div class="planilhas-grid">
+                <div class="planilha-card">
+                    <div class="planilha-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="planilha-info">
+                        <h4>Receitas e despesas 2026</h4>
+                        <a href="#" download><i class="fas fa-download"></i> Download (XLSX)</a>
+                    </div>
+                </div>
+                <div class="planilha-card">
+                    <div class="planilha-icon">
+                        <i class="fas fa-chart-pie"></i>
+                    </div>
+                    <div class="planilha-info">
+                        <h4>Execução orçamentária 2025</h4>
+                        <a href="#" download><i class="fas fa-download"></i> Download (XLSX)</a>
+                    </div>
+                </div>
+                <div class="planilha-card">
+                    <div class="planilha-icon">
+                        <i class="fas fa-hand-holding-usd"></i>
+                    </div>
+                    <div class="planilha-info">
+                        <h4>Doações e patrocínios 2024</h4>
+                        <a href="#" download><i class="fas fa-download"></i> Download (XLSX)</a>
+                    </div>
+                </div>
+                <div class="planilha-card">
+                    <div class="planilha-icon">
+                        <i class="fas fa-file-invoice"></i>
+                    </div>
+                    <div class="planilha-info">
+                        <h4>Prestação de contas - Projetos culturais</h4>
+                        <a href="#" download><i class="fas fa-download"></i> Download (PDF)</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Chamada para contato em caso de dúvidas -->
+        <section style="padding: 4rem 5%; text-align: center; background: var(--white);">
+            <h2 style="color: var(--primary); margin-bottom: 1rem;">Dúvidas sobre a prestação de contas?</h2>
+            <p style="margin-bottom: 2rem;">Entre em contato conosco pelo e-mail: transparencia@acamcufapb.org</p>
+            <a href="index.html#contatos" class="btn">Fale conosco</a>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 ACAM - CUFA Paraíba. Todos os direitos reservados.</p>
+        <p><a href="index.html">Voltar para a página inicial</a></p>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atividades - ACAM CUFA Paraíba</title>
+    <!-- Fontes Google -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Ícones Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* ===== RESET E VARIÁVEIS ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #332e7d;
+            --primary-light: #4c54af;
+            --secondary: #ff2f00;
+            --secondary-light: #ff774d;
+            --dark: #263238;
+            --light: #F5F9FF;
+            --gray: #ECEFF1;
+            --white: #FFFFFF;
+            --shadow: 0 10px 30px rgba(0,0,0,0.1);
+            --border-radius: 12px;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: var(--dark);
+            background-color: var(--light);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* ===== CABEÇALHO ===== */
+        header {
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo h1 {
+            font-size: 1.8rem;
+            color: var(--primary);
+        }
+
+        .nav-menu ul {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-menu a {
+            font-weight: 600;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-menu a:hover {
+            color: var(--secondary);
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: var(--secondary);
+            transition: width 0.3s;
+        }
+
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+
+        /* ===== HERO DA PÁGINA ATIVIDADES ===== */
+        .atividades-hero {
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: white;
+            padding: 4rem 5%;
+            text-align: center;
+        }
+
+        .atividades-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .atividades-hero p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+        /* ===== SEÇÃO INTRO ===== */
+        .intro-section {
+            padding: 4rem 5%;
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .intro-section h2 {
+            color: var(--primary);
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .intro-section p {
+            font-size: 1.2rem;
+            color: var(--dark);
+        }
+
+        /* ===== SEÇÕES DE ATIVIDADES ===== */
+        .atividade-section {
+            padding: 4rem 5%;
+        }
+
+        .atividade-section:nth-child(even) {
+            background: var(--white);
+        }
+
+        .atividade-section:nth-child(odd) {
+            background: var(--light);
+        }
+
+        .atividade-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .atividade-titulo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .atividade-titulo i {
+            font-size: 3rem;
+            color: var(--secondary);
+        }
+
+        .atividade-titulo h2 {
+            color: var(--primary);
+            font-size: 2.5rem;
+        }
+
+        .atividade-destaque {
+            background: var(--secondary);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 1rem;
+            margin-left: 1rem;
+        }
+
+        /* ===== GRID DE ESPORTES (DESTAQUE) ===== */
+        .esportes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .esporte-card {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s;
+            border-bottom: 4px solid var(--secondary);
+        }
+
+        .esporte-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .esporte-img {
+            height: 200px;
+            background: linear-gradient(135deg, var(--primary-light), var(--primary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 4rem;
+        }
+
+        .esporte-content {
+            padding: 1.5rem;
+        }
+
+        .esporte-content h3 {
+            color: var(--primary);
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .esporte-content .categoria {
+            color: var(--secondary);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+
+        .esporte-content p {
+            margin-bottom: 1rem;
+        }
+
+        .info-horario {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin: 0.5rem 0;
+            color: var(--dark);
+        }
+
+        .info-horario i {
+            color: var(--secondary);
+            width: 20px;
+        }
+
+        .btn-inscricao {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 0.6rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            margin-top: 1rem;
+            transition: background 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-inscricao:hover {
+            background: var(--primary-light);
+        }
+
+        /* ===== GRID DE CULTURA ===== */
+        .cultura-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .cultura-item {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .cultura-item:hover {
+            transform: scale(1.05);
+        }
+
+        .cultura-item i {
+            font-size: 3rem;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+
+        .cultura-item h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        /* ===== GALERIA DE FOTOS ===== */
+        .galeria {
+            padding: 4rem 5%;
+            background: var(--white);
+        }
+
+        .galeria-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 3rem;
+        }
+
+        .galeria-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .foto-card {
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s;
+        }
+
+        .foto-card:hover {
+            transform: scale(1.03);
+        }
+
+        .foto-img {
+            height: 200px;
+            background: var(--gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-size: 3rem;
+        }
+
+        .foto-legenda {
+            padding: 1rem;
+            text-align: center;
+            background: var(--white);
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        /* ===== TABELA DE HORÁRIOS ===== */
+        .horarios-section {
+            padding: 4rem 5%;
+            background: var(--light);
+        }
+
+        .tabela-horarios {
+            max-width: 800px;
+            margin: 2rem auto;
+            background: var(--white);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .tabela-horarios table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .tabela-horarios th {
+            background: var(--primary);
+            color: white;
+            padding: 1rem;
+            text-align: left;
+        }
+
+        .tabela-horarios td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--gray);
+        }
+
+        .tabela-horarios tr:last-child td {
+            border-bottom: none;
+        }
+
+        .tabela-horarios tr:hover {
+            background: var(--gray);
+        }
+
+        .tabela-horarios .esporte {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .tabela-horarios .fa-circle {
+            color: var(--secondary);
+            font-size: 0.8rem;
+            margin-right: 0.5rem;
+        }
+
+        /* ===== FOTOS EM DESTAQUE ===== */
+        .foto-destaque {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            margin: 3rem 0;
+            flex-wrap: wrap;
+        }
+
+        .foto-destaque .foto {
+            flex: 1;
+            min-width: 280px;
+            height: 250px;
+            background: var(--gray);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+        }
+
+        .foto-destaque .texto {
+            flex: 1;
+            min-width: 280px;
+        }
+
+        /* ===== BOTÃO ===== */
+        .btn {
+            display: inline-block;
+            background: var(--secondary);
+            color: var(--white);
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: background 0.3s, transform 0.2s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: var(--secondary-light);
+            transform: scale(1.05);
+        }
+
+        .btn-voltar {
+            background: var(--primary);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+
+        .btn-voltar:hover {
+            background: var(--primary-light);
+        }
+
+        /* ===== RODAPÉ ===== */
+        footer {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        /* ===== RESPONSIVIDADE ===== */
+        @media (max-width: 768px) {
+            .atividades-hero h1 {
+                font-size: 2rem;
+            }
+            .atividade-titulo h2 {
+                font-size: 1.8rem;
+            }
+            .foto-destaque {
+                flex-direction: column;
+            }
+            .nav-menu ul {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Cabeçalho -->
+    <header>
+        <div class="logo">
+            <h1>ACAM</h1>
+        </div>
+        <nav class="nav-menu">
+            <ul>
+                <li><a href="index.html">Início</a></li>
+                <li><a href="trabalho.html">Nossa História</a></li>
+                <li><a href="atividades.html" style="color: var(--secondary);">Atividades</a></li>
+                <li><a href="noticias.html">Notícias</a></li>
+                <li><a href="transparencia.html">Transparência</a></li>
+                <li><a href="faca_parte.html">Faça parte</a></li>
+                <li><a href="index.html">Contatos</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero da Página Atividades -->
+        <section class="atividades-hero">
+            <h1>Nossas Atividades</h1>
+            <p>Conheça todas as ações da ACAM em parceria com a CUFA Paraíba</p>
+        </section>
+
+        <!-- Introdução -->
+        <section class="intro-section">
+            <h2>Transformando vidas através do esporte, cultura e assistência</h2>
+            <p>A ACAM oferece mais de 15 atividades diferentes para crianças, jovens, adultos e idosos da comunidade de Muçumagro. Todas as atividades são gratuitas e abertas à participação de todos.</p>
+        </section>
+
+        <!-- SEÇÃO ESPORTES (DESTAQUE) -->
+        <section class="atividade-section">
+            <div class="atividade-container">
+                <div class="atividade-titulo">
+                    <i class="fas fa-futbol"></i>
+                    <h2>Esportes <span class="atividade-destaque">Destaque</span></h2>
+                </div>
+
+                <p style="margin-bottom: 2rem; font-size: 1.2rem;">O esporte como ferramenta de inclusão, disciplina e cidadania. Mais de 200 crianças e jovens participam das escolinhas esportivas da ACAM.</p>
+
+                <!-- Foto em destaque -->
+                <div class="foto-destaque">
+                    <div class="foto">
+                        <div class="placeholder-img" style="height: 100%; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, var(--primary-light), var(--primary)); color: white;">
+                            <i class="fas fa-medal" style="font-size: 5rem;"></i>
+                        </div>
+                    </div>
+                    <div class="texto">
+                        <h3 style="color: var(--primary); margin-bottom: 1rem;">Jovens atletas em destaque</h3>
+                        <p>Nossos alunos já participaram de campeonatos municipais e estaduais, conquistando medalhas e, mais importante, valores como trabalho em equipe, respeito e perseverança.</p>
+                    </div>
+                </div>
+
+                <!-- Grid de Esportes -->
+                <div class="esportes-grid">
+                    <!-- Jiu-Jitsu -->
+                    <div class="esporte-card">
+                        <div class="esporte-img">
+                            <i class="fas fa-hand-fist"></i>
+                        </div>
+                        <div class="esporte-content">
+                            <h3>Jiu-Jitsu</h3>
+                            <div class="categoria">Crianças, jovens e adultos</div>
+                            <p>Arte marcial que desenvolve disciplina, respeito e defesa pessoal. Aulas para todas as idades e níveis.</p>
+                            <div class="info-horario">
+                                <i class="fas fa-calendar-alt"></i>
+                                <span>Terças e Quintas</span>
+                            </div>
+                            <div class="info-horario">
+                                <i class="fas fa-clock"></i>
+                                <span>14h (infantil) | 16h (adulto)</span>
+                            </div>
+                            <div class="info-horario">
+                                <i class="fas fa-user"></i>
+                                <span>Professor: Mestre Carlos</span>
+                            </div>
+                            <a href="index.html#faca-parte" class="btn-inscricao">Quero participar</a>
+                        </div>
+                    </div>
+
+                    <!-- Capoeira -->
+                    <div class="esporte-card">
+                        <div class="esporte-img">
+                            <i class="fas fa-music"></i>
+                        </div>
+                        <div class="esporte-content">
+                            <h3>Capoeira</h3>
+                            <div class="categoria">Todas as idades</div>
+                            <p>Arte, luta e cultura brasileira em um só lugar. A capoeira trabalha coordenação motora, musicalidade e ancestralidade.</p>
+                            <div class="info-horario">
+                                <i class="fas fa-calendar-alt"></i>
+                                <span>Segundas e Quartas</span>
+                            </div>
+                            <div class="info-horario">
+                                <i class="fas fa-clock"></i>
+                                <span>15h (infantil) | 17h (adulto)</span>
+                            </div>
+                            <div class="info-horario">
+                                <i class="fas fa-user"></i>
+                                <span>Contramestre: Mestre Beto</span>
+                            </div>
+                            <a href="index.html#faca-parte" class="btn-inscricao">Quero participar</a>
+                        </div>
+                    </div>
+
+                    <!-- Escola de Dança -->
+                    <div class="esporte-card">
+                        <div class="esporte-img">
+                            <i class="fas fa-shoe-prints"></i>
+                        </div>
+                        <div class="esporte-content">
+                            <h3>Escola de Dança</h3>
+                            <div class="categoria">Crianças e adolescentes</div>
+                            <p>Danças urbanas, frevo, forró e dança contemporânea. Expressão corporal e arte em movimento.</p>
+                            <div class="info-horario">
+                                <i class="fas fa-calendar-alt"></i>
+                                <span>Terças e Sextas</span>
+                            </div>
+                            <div class="info-horario">
+                                <i class="fas fa-clock"></i>
+                                <span>14h (iniciante) | 16h (avançado)</span>
+                            </div>
+                            <div class="info-horario">
+                                <i class="fas fa-user"></i>
+                                <span>Professora: Ana Paula</span>
+                            </div>
+                            <a href="index.html#faca-parte" class="btn-inscricao">Quero participar</a>
+                        </div>
+                    </div>
+
+                    <!-- Futebol -->
+                    <div class="esporte-card">
+                        <div class="esporte-img">
+                            <i class="fas fa-futbol"></i>
+                        </div>
+                        <div class="esporte-content">
+                            <h3>Futebol</h3>
+                            <div class="categoria">Sub-15, Sub-17 e Feminino</div>
+                            <p>Escolinha de futebol com times masculinos e feminino, preparando atletas para campeonatos locais.</p>
+                            <div class="info-horario">
+                                <i class="fas fa-calendar-alt"></i>
+                                <span>Segundas, Quartas e Sextas</span>
+                            </div>
+                            <div class="info-horario">
+                                <i class="fas fa-clock"></i>
+                                <span>8h às 10h | 15h às 17h</span>
+                            </div>
+                            <div class="info-horario">
+                                <i class="fas fa-user"></i>
+                                <span>Técnico: Professor Marcos</span>
+                            </div>
+                            <a href="index.html#faca-parte" class="btn-inscricao">Quero participar</a>
+                        </div>
+                    </div>
+
+                    <!-- Funcional -->
+                    <div class="esporte-card">
+                        <div class="esporte-img">
+                            <i class="fas fa-heartbeat"></i>
+                        </div>
+                        <div class="esporte-content">
+                            <h3>Treino Funcional</h3>
+                            <div class="categoria">Adultos e idosos</div>
+                            <p>Aulas ao ar livre para melhorar condicionamento físico, saúde cardiovascular e bem-estar.</p>
+                            <div class="info-horario">
+                                <i class="fas fa-calendar-alt"></i>
+                                <span>Terças e Quintas</span>
+                            </div>
+                            <div class="info-horario">
+                                <i class="fas fa-clock"></i>
+                                <span>6h30 e 17h30</span>
+                            </div>
+                            <div class="info-horario">
+                                <i class="fas fa-user"></i>
+                                <span>Educador: João Carlos</span>
+                            </div>
+                            <a href="index.html#faca-parte" class="btn-inscricao">Quero participar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SEÇÃO SAÚDE E BEM-ESTAR -->
+        <section class="atividade-section">
+            <div class="atividade-container">
+                <div class="atividade-titulo">
+                    <i class="fas fa-heartbeat"></i>
+                    <h2>Saúde e Bem-estar</h2>
+                </div>
+
+                <div class="cultura-grid">
+                    <div class="cultura-item">
+                        <i class="fas fa-brain"></i>
+                        <h3>Psicologia</h3>
+                        <p>Atendimento psicológico individual e em grupo para crianças, adolescentes e adultos.</p>
+                        <p style="margin-top: 1rem; color: var(--secondary);"><i class="fas fa-calendar"></i> Segundas e Quartas</p>
+                    </div>
+                    <div class="cultura-item">
+                        <i class="fas fa-bone"></i>
+                        <h3>Fisioterapia</h3>
+                        <p>Atendimentos e orientações para reabilitação e prevenção de lesões.</p>
+                        <p style="margin-top: 1rem; color: var(--secondary);"><i class="fas fa-calendar"></i> Terças e Quintas</p>
+                    </div>
+                    <div class="cultura-item">
+                        <i class="fas fa-lungs"></i>
+                        <h3>Psicofisiologia</h3>
+                        <p>Avaliação e acompanhamento da relação entre mente e corpo.</p>
+                        <p style="margin-top: 1rem; color: var(--secondary);"><i class="fas fa-calendar"></i> Sextas</p>
+                    </div>
+                    <div class="cultura-item">
+                        <i class="fas fa-child"></i>
+                        <h3>Psicopedagogia</h3>
+                        <p>Apoio a crianças com dificuldades de aprendizagem.</p>
+                        <p style="margin-top: 1rem; color: var(--secondary);"><i class="fas fa-calendar"></i> Segundas e Quartas</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SEÇÃO CULTURA -->
+        <section class="atividade-section">
+            <div class="atividade-container">
+                <div class="atividade-titulo">
+                    <i class="fas fa-palette"></i>
+                    <h2>Cultura</h2>
+                </div>
+
+                <div class="cultura-grid">
+                    <div class="cultura-item">
+                        <i class="fas fa-radio"></i>
+                        <h3>Rádio Comunitária</h3>
+                        <p>Programação 24h com música, informação e entrevistas. Participe!</p>
+                        <a href="https://radios.com.br/aovivo/radio-web-mucumagro-fm/194525" target="_blank" style="color: var(--secondary);">Ouça ao vivo</a>
+                    </div>
+                    <div class="cultura-item">
+                        <i class="fas fa-book-open"></i>
+                        <h3>Biblioteca Comunal</h3>
+                        <p>Acervo com mais de 1.000 livros para consulta e empréstimo.</p>
+                        <p style="margin-top: 1rem; color: var(--secondary);"><i class="fas fa-calendar"></i> Segunda a Sexta, 8h às 17h</p>
+                    </div>
+                    <div class="cultura-item">
+                        <i class="fas fa-mask"></i>
+                        <h3>Ponto de Cultura</h3>
+                        <p>Oficinas de arte, música, teatro e artesanato. Parceria Funjope e MINC.</p>
+                        <p style="margin-top: 1rem; color: var(--secondary);"><i class="fas fa-calendar"></i> Terças e Quintas, 14h</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SEÇÃO ASSISTÊNCIA -->
+        <section class="atividade-section">
+            <div class="atividade-container">
+                <div class="atividade-titulo">
+                    <i class="fas fa-hand-holding-heart"></i>
+                    <h2>Assistência Social</h2>
+                </div>
+
+                <div class="foto-destaque">
+                    <div class="foto">
+                        <div class="placeholder-img" style="height: 100%; display: flex; align-items: center; justify-content: center; background: var(--gray);">
+                            <i class="fas fa-hands-helping" style="font-size: 4rem; color: var(--primary);"></i>
+                        </div>
+                    </div>
+                    <div class="texto">
+                        <h3 style="color: var(--primary); margin-bottom: 1rem;">Apoio a famílias em vulnerabilidade</h3>
+                        <p>A ACAM oferece acompanhamento social, distribuição de cestas básicas, orientação para acesso a benefícios sociais e encaminhamento para serviços públicos.</p>
+                        <p><strong>Atendimento:</strong> Segunda a Sexta, 8h às 16h, com agendamento prévio.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SEÇÃO EDUCAÇÃO -->
+        <section class="atividade-section">
+            <div class="atividade-container">
+                <div class="atividade-titulo">
+                    <i class="fas fa-book-open"></i>
+                    <h2>Educação</h2>
+                </div>
+
+                <div class="cultura-grid">
+                    <div class="cultura-item">
+                        <i class="fas fa-pencil-alt"></i>
+                        <h3>Reforço Escolar</h3>
+                        <p>Acompanhamento escolar para crianças do ensino fundamental.</p>
+                        <p style="margin-top: 1rem; color: var(--secondary);"><i class="fas fa-calendar"></i> Segundas e Quartas, 14h</p>
+                    </div>
+                    <div class="cultura-item">
+                        <i class="fas fa-laptop"></i>
+                        <h3>Informática Básica</h3>
+                        <p>Introdução à informática para jovens e adultos.</p>
+                        <p style="margin-top: 1rem; color: var(--secondary);"><i class="fas fa-calendar"></i> Terças e Quintas, 9h</p>
+                    </div>
+                    <div class="cultura-item">
+                        <i class="fas fa-language"></i>
+                        <h3>Alfabetização de Adultos</h3>
+                        <p>Turmas de alfabetização para adultos e idosos.</p>
+                        <p style="margin-top: 1rem; color: var(--secondary);"><i class="fas fa-calendar"></i> Segundas e Sextas, 19h</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TABELA DE HORÁRIOS -->
+        <section class="horarios-section">
+            <h2 style="text-align: center; color: var(--primary); margin-bottom: 2rem;">Horários das Atividades</h2>
+            <div class="tabela-horarios">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Atividade</th>
+                            <th>Dias</th>
+                            <th>Horário</th>
+                            <th>Público</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="esporte"><i class="fas fa-circle"></i> Jiu-Jitsu</td>
+                            <td>Ter/Qui</td>
+                            <td>14h (infantil) / 16h (adulto)</td>
+                            <td>Crianças e adultos</td>
+                        </tr>
+                        <tr>
+                            <td class="esporte"><i class="fas fa-circle"></i> Capoeira</td>
+                            <td>Seg/Qua</td>
+                            <td>15h (infantil) / 17h (adulto)</td>
+                            <td>Todas as idades</td>
+                        </tr>
+                        <tr>
+                            <td class="esporte"><i class="fas fa-circle"></i> Escola de Dança</td>
+                            <td>Ter/Sex</td>
+                            <td>14h (iniciante) / 16h (avançado)</td>
+                            <td>Crianças e adolescentes</td>
+                        </tr>
+                        <tr>
+                            <td class="esporte"><i class="fas fa-circle"></i> Futebol</td>
+                            <td>Seg/Qua/Sex</td>
+                            <td>8h-10h / 15h-17h</td>
+                            <td>Sub-15, Sub-17, Feminino</td>
+                        </tr>
+                        <tr>
+                            <td class="esporte"><i class="fas fa-circle"></i> Treino Funcional</td>
+                            <td>Ter/Qui</td>
+                            <td>6h30 / 17h30</td>
+                            <td>Adultos e idosos</td>
+                        </tr>
+                        <tr>
+                            <td><i class="fas fa-circle" style="color: var(--primary);"></i> Psicologia</td>
+                            <td>Seg/Qua</td>
+                            <td>8h-12h / 14h-17h</td>
+                            <td>Todas as idades</td>
+                        </tr>
+                        <tr>
+                            <td><i class="fas fa-circle" style="color: var(--primary);"></i> Biblioteca</td>
+                            <td>Seg-Sex</td>
+                            <td>8h-17h</td>
+                            <td>Público geral</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- GALERIA DE FOTOS -->
+        <section class="galeria">
+            <h2 class="galeria-title">Galeria de Atividades</h2>
+            <div class="galeria-grid">
+                <!-- Foto 1 -->
+                <div class="foto-card">
+                    <div class="foto-img">
+                        <div class="placeholder-img">
+                            <i class="fas fa-image" style="font-size: 3rem;"></i>
+                        </div>
+                    </div>
+                    <div class="foto-legenda">Turma de Jiu-Jitsu</div>
+                </div>
+                <!-- Foto 2 -->
+                <div class="foto-card">
+                    <div class="foto-img">
+                        <div class="placeholder-img">
+                            <i class="fas fa-image" style="font-size: 3rem;"></i>
+                        </div>
+                    </div>
+                    <div class="foto-legenda">Roda de Capoeira</div>
+                </div>
+                <!-- Foto 3 -->
+                <div class="foto-card">
+                    <div class="foto-img">
+                        <div class="placeholder-img">
+                            <i class="fas fa-image" style="font-size: 3rem;"></i>
+                        </div>
+                    </div>
+                    <div class="foto-legenda">Apresentação de Dança</div>
+                </div>
+                <!-- Foto 4 -->
+                <div class="foto-card">
+                    <div class="foto-img">
+                        <div class="placeholder-img">
+                            <i class="fas fa-image" style="font-size: 3rem;"></i>
+                        </div>
+                    </div>
+                    <div class="foto-legenda">Time de Futebol Feminino</div>
+                </div>
+                <!-- Foto 5 -->
+                <div class="foto-card">
+                    <div class="foto-img">
+                        <div class="placeholder-img">
+                            <i class="fas fa-image" style="font-size: 3rem;"></i>
+                        </div>
+                    </div>
+                    <div class="foto-legenda">Atendimento de Psicologia</div>
+                </div>
+                <!-- Foto 6 -->
+                <div class="foto-card">
+                    <div class="foto-img">
+                        <div class="placeholder-img">
+                            <i class="fas fa-image" style="font-size: 3rem;"></i>
+                        </div>
+                    </div>
+                    <div class="foto-legenda">Oficina de Arte no Ponto de Cultura</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Chamada para ação -->
+        <section class="atividades-hero" style="background: var(--secondary);">
+            <h2>Venha participar!</h2>
+            <p>Todas as atividades são gratuitas. Basta comparecer à sede da ACAM no horário da atividade desejada.</p>
+            <a href="index.html#faca-parte" class="btn" style="background: var(--primary); margin-top: 2rem;">Quero me inscrever</a>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 ACAM - CUFA Paraíba. Todos os direitos reservados.</p>
+        <p><a href="index.html" style="color: var(--secondary);">Voltar para a página inicial</a></p>
+    </footer>
+
+</body>
+</html>

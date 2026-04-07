@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notícias - ACAM CUFA Paraíba</title>
+    <!-- Fontes Google -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Ícones Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* ===== RESET E VARIÁVEIS ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #332e7d;
+            --primary-light: #4c54af;
+            --secondary: #ff2f00;
+            --secondary-light: #ff774d;
+            --dark: #263238;
+            --light: #F5F9FF;
+            --gray: #ECEFF1;
+            --white: #FFFFFF;
+            --shadow: 0 10px 30px rgba(0,0,0,0.1);
+            --border-radius: 12px;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: var(--dark);
+            background-color: var(--light);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* ===== CABEÇALHO ===== */
+        header {
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo h1 {
+            font-size: 1.8rem;
+            color: var(--primary);
+        }
+
+        .nav-menu ul {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-menu a {
+            font-weight: 600;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-menu a:hover {
+            color: var(--secondary);
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: var(--secondary);
+            transition: width 0.3s;
+        }
+
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+
+        /* ===== HERO DA PÁGINA NOTÍCIAS ===== */
+        .noticias-hero {
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: white;
+            padding: 4rem 5%;
+            text-align: center;
+        }
+
+        .noticias-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .noticias-hero p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+        /* ===== SEÇÃO DE NOTÍCIAS ===== */
+        .noticias-section {
+            padding: 4rem 5%;
+        }
+
+        .noticias-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .noticia-card {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .noticia-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .noticia-img {
+            height: 200px;
+            background: var(--gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-size: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .noticia-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .noticia-content {
+            padding: 1.5rem;
+        }
+
+        .noticia-data {
+            color: var(--secondary);
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .noticia-data i {
+            font-size: 0.8rem;
+        }
+
+        .noticia-content h3 {
+            color: var(--primary);
+            margin-bottom: 0.8rem;
+            font-size: 1.4rem;
+        }
+
+        .noticia-resumo {
+            color: var(--dark);
+            margin-bottom: 1rem;
+        }
+
+        .noticia-link {
+            color: var(--secondary);
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: gap 0.3s;
+        }
+
+        .noticia-link:hover {
+            gap: 0.8rem;
+        }
+
+        /* ===== NOTÍCIA EM DESTAQUE ===== */
+        .destaque-section {
+            padding: 2rem 5% 4rem;
+        }
+
+        .destaque-card {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            background: var(--white);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .destaque-img {
+            height: 100%;
+            min-height: 300px;
+            background: var(--gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-size: 4rem;
+        }
+
+        .destaque-content {
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .destaque-content .noticia-data {
+            font-size: 1rem;
+        }
+
+        .destaque-content h2 {
+            color: var(--primary);
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .destaque-content p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--secondary);
+            color: var(--white);
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: background 0.3s, transform 0.2s;
+            border: none;
+            cursor: pointer;
+            width: fit-content;
+        }
+
+        .btn:hover {
+            background: var(--secondary-light);
+            transform: scale(1.05);
+        }
+
+        /* ===== BLOCO DA RÁDIO ===== */
+        .radio-destaque {
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: white;
+            padding: 3rem 5%;
+            text-align: center;
+        }
+
+        .radio-destaque h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .radio-destaque p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        .radio-destaque .btn {
+            background: var(--secondary);
+        }
+
+        /* ===== NEWSLETTER ===== */
+        .newsletter {
+            padding: 4rem 5%;
+            background: var(--white);
+            text-align: center;
+        }
+
+        .newsletter h2 {
+            color: var(--primary);
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .newsletter p {
+            margin-bottom: 2rem;
+        }
+
+        .newsletter-form {
+            display: flex;
+            max-width: 500px;
+            margin: 0 auto;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            min-width: 200px;
+            padding: 1rem;
+            border: 2px solid var(--gray);
+            border-radius: 50px;
+            font-family: inherit;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .newsletter-form input:focus {
+            border-color: var(--secondary);
+        }
+
+        .newsletter-form button {
+            background: var(--primary);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .newsletter-form button:hover {
+            background: var(--primary-light);
+        }
+
+        /* ===== RODAPÉ ===== */
+        footer {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        footer a {
+            color: var(--secondary);
+        }
+
+        /* ===== RESPONSIVIDADE ===== */
+        @media (max-width: 768px) {
+            .noticias-hero h1 {
+                font-size: 2rem;
+            }
+            .destaque-card {
+                grid-template-columns: 1fr;
+            }
+            .nav-menu ul {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 1rem;
+            }
+            .newsletter-form {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Cabeçalho -->
+    <header>
+        <div class="logo">
+            <h1>ACAM</h1>
+        </div>
+        <nav class="nav-menu">
+            <ul>
+                <li><a href="index.html">Início</a></li>
+                <li><a href="trabalho.html">Nossa História</a></li>
+                <li><a href="atividades.html">Atividades</a></li>
+                <li><a href="noticias.html" style="color: var(--secondary);">Notícias</a></li>
+                <li><a href="transparencia.html">Transparência</a></li>
+                <li><a href="faca_parte.html">Faça parte</a></li>
+                <li><a href="index.html">Contatos</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero da Página -->
+        <section class="noticias-hero">
+            <h1>Notícias</h1>
+            <p>Fique por dentro de tudo o que acontece na ACAM e na CUFA Paraíba</p>
+        </section>
+
+        <!-- Notícia em Destaque -->
+        <section class="destaque-section">
+            <div class="destaque-card">
+                <div class="destaque-img">
+                    <i class="fas fa-newspaper"></i>
+                </div>
+                <div class="destaque-content">
+                    <div class="noticia-data">
+                        <i class="fas fa-calendar-alt"></i> 25 de março de 2026
+                    </div>
+                    <h2>ACAM e CUFA lançam novo projeto cultural para juventude</h2>
+                    <p>Iniciativa vai oferecer oficinas de audiovisual, grafite e música para jovens de Muçumagro. As inscrições começam na próxima semana e são totalmente gratuitas.</p>
+                    <a href="#" class="btn">Leia mais</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Grid de Notícias -->
+        <section class="noticias-section">
+            <h2 style="text-align: center; color: var(--primary); margin-bottom: 2rem;">Últimas notícias</h2>
+            <div class="noticias-grid">
+                <!-- Notícia 1 -->
+                <div class="noticia-card">
+                    <div class="noticia-img">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <div class="noticia-content">
+                        <div class="noticia-data">
+                            <i class="fas fa-calendar-alt"></i> 20/03/2026
+                        </div>
+                        <h3>Mutirão de saúde acontece neste sábado</h3>
+                        <p class="noticia-resumo">Atendimentos de psicologia, fisioterapia e orientação nutricional serão oferecidos gratuitamente à comunidade.</p>
+                        <a href="#" class="noticia-link">Leia mais <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <!-- Notícia 2 -->
+                <div class="noticia-card">
+                    <div class="noticia-img">
+                        <i class="fas fa-futbol"></i>
+                    </div>
+                    <div class="noticia-content">
+                        <div class="noticia-data">
+                            <i class="fas fa-calendar-alt"></i> 18/03/2026
+                        </div>
+                        <h3>Inscrições abertas para escolinha de futebol feminino</h3>
+                        <p class="noticia-resumo">Meninas e jovens de 10 a 17 anos podem se inscrever na nova turma de futebol feminino da ACAM.</p>
+                        <a href="#" class="noticia-link">Leia mais <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <!-- Notícia 3 -->
+                <div class="noticia-card">
+                    <div class="noticia-img">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <div class="noticia-content">
+                        <div class="noticia-data">
+                            <i class="fas fa-calendar-alt"></i> 15/03/2026
+                        </div>
+                        <h3>Oficina de grafite no Ponto de Cultura</h3>
+                        <p class="noticia-resumo">Artista local irá ministrar oficina de grafite para jovens. Material incluso.</p>
+                        <a href="#" class="noticia-link">Leia mais <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <!-- Notícia 4 -->
+                <div class="noticia-card">
+                    <div class="noticia-img">
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                    <div class="noticia-content">
+                        <div class="noticia-data">
+                            <i class="fas fa-calendar-alt"></i> 10/03/2026
+                        </div>
+                        <h3>Biblioteca comunal ganha novos livros</h3>
+                        <p class="noticia-resumo">Doação de mais de 200 livros amplia acervo da biblioteca, que agora conta com obras de literatura brasileira e infantojuvenil.</p>
+                        <a href="#" class="noticia-link">Leia mais <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <!-- Notícia 5 -->
+                <div class="noticia-card">
+                    <div class="noticia-img">
+                        <i class="fas fa-music"></i>
+                    </div>
+                    <div class="noticia-content">
+                        <div class="noticia-data">
+                            <i class="fas fa-calendar-alt"></i> 05/03/2026
+                        </div>
+                        <h3>Roda de capoeira em comemoração ao aniversário da ACAM</h3>
+                        <p class="noticia-resumo">Evento especial no próximo sábado terá apresentações de capoeira, maculelê e samba de roda.</p>
+                        <a href="#" class="noticia-link">Leia mais <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <!-- Notícia 6 -->
+                <div class="noticia-card">
+                    <div class="noticia-img">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <div class="noticia-content">
+                        <div class="noticia-data">
+                            <i class="fas fa-calendar-alt"></i> 01/03/2026
+                        </div>
+                        <h3>Alunos do Jiu-Jitsu conquistam medalhas em campeonato</h3>
+                        <p class="noticia-resumo">Seis jovens atletas da ACAM trouxeram medalhas de ouro e prata do Campeonato Paraibano de Jiu-Jitsu.</p>
+                        <a href="#" class="noticia-link">Leia mais <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Destaque da Rádio Comunitária -->
+        <section class="radio-destaque">
+            <h2><i class="fas fa-radio"></i> Rádio Comunitária Mucumagro FM</h2>
+            <p>Programação 24h com entrevistas, música e informação do bairro. Ouça ao vivo!</p>
+            <a href="https://radios.com.br/aovivo/radio-web-mucumagro-fm/194525" target="_blank" class="btn">Ouvir agora</a>
+        </section>
+
+        <!-- Newsletter -->
+        <section class="newsletter">
+            <h2>Receba nossas notícias</h2>
+            <p>Cadastre-se para ficar por dentro de todas as novidades da ACAM e CUFA Paraíba.</p>
+            <form class="newsletter-form">
+                <input type="email" placeholder="Seu melhor e-mail" required>
+                <button type="submit">Assinar</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 ACAM - CUFA Paraíba. Todos os direitos reservados.</p>
+        <p><a href="index.html">Voltar para a página inicial</a></p>
+    </footer>
+
+</body>
+</html>

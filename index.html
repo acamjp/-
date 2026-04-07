@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ACAM</title>
+    <!-- Fontes Google -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Ícones Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* ===== RESET E VARIÁVEIS ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #332e7d;
+            --primary-light: #4c54af;
+            --secondary: #ff2f00;
+            --secondary-light: #ff774d;
+            --dark: #263238;
+            --light: #F5F9FF;
+            --gray: #ECEFF1;
+            --white: #FFFFFF;
+            --shadow: 0 10px 30px rgba(0,0,0,0.1);
+            --border-radius: 12px;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: var(--dark);
+            background-color: var(--light);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* ===== CABEÇALHO FIXO ===== */
+        header {
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo h1 {
+            font-size: 1.8rem;
+            color: var(--primary);
+        }
+
+        .nav-menu ul {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-menu a {
+            font-weight: 600;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-menu a:hover {
+            color: var(--secondary);
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: var(--secondary);
+            transition: width 0.3s;
+        }
+
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+
+        /* ===== HERO SECTION COM IMAGEM E FILTRO VERDE ===== */
+        .hero {
+            position: relative;
+            height: 80vh;
+            min-height: 300px;
+            background: url('foto.jpg') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(46, 92, 125, 0.7);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            padding: 2rem;
+        }
+
+        .hero-content h1 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero-content p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+
+        .hero-content .btn {
+            background: var(--secondary);
+            color: white;
+            padding: 1rem 2.5rem;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            transition: background 0.3s;
+        }
+
+        .hero-content .btn:hover {
+            background: var(--secondary-light);
+        }
+
+        /* ===== CAPAS EM CARDS ===== */
+        .capas {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            padding: 3rem 5%;
+        }
+
+        .capa-card {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .capa-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .capa-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+
+        .capa-card:hover::before {
+            opacity: 1;
+        }
+
+        .capa-card h2 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--secondary);
+            color: var(--white);
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            margin-top: 1rem;
+            transition: background 0.3s, transform 0.2s;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            max-width: 280px;
+            text-align: center;
+        }
+
+        .btn:hover {
+            background: var(--secondary-light);
+            transform: scale(1.05);
+        }
+
+        /* ===== SEÇÕES ===== */
+        section {
+            padding: 4rem 5%;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--secondary);
+            margin: 0.5rem auto 0;
+            border-radius: 2px;
+        }
+
+        /* ===== QUEM SOMOS ===== */
+        .quem-somos-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        .quem-somos-item {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            transition: all 0.3s;
+            grid-column: 1 / -1;
+            width: 100%;
+        }
+
+        .quem-somos-item:hover {
+            transform: scale(1.02);
+            border-left: 5px solid var(--secondary);
+        }
+
+        .quem-somos-item h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .quem-somos-item ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .quem-somos-item li {
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .quem-somos-item li i {
+            color: var(--secondary);
+            width: 20px;
+        }
+
+        /* Mapa */
+        .map-container {
+            width: 100%;
+            height: 250px;
+            margin-top: 1rem;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* ===== ATIVIDADES ===== */
+        .atividades-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .atividade-card {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s;
+        }
+
+        .atividade-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .atividade-img {
+            height: 150px;
+            background: linear-gradient(135deg, var(--primary-light), var(--primary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2.5rem;
+        }
+
+        .atividade-content {
+            padding: 1.5rem;
+        }
+
+        .atividade-content h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .atividade-content ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .atividade-content li {
+            margin-bottom: 0.3rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .atividade-content li i {
+            color: var(--secondary);
+            width: 20px;
+        }
+
+        /* ===== NOTÍCIAS ===== */
+        .noticias-destaque {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+        }
+
+        .noticias-lista {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+        }
+
+        .noticias-lista ul {
+            list-style: none;
+        }
+
+        .noticias-lista li {
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--gray);
+        }
+
+        .noticias-lista li:last-child {
+            border-bottom: none;
+        }
+
+        .noticias-lista a {
+            font-weight: 600;
+            color: var(--primary);
+            transition: color 0.3s;
+        }
+
+        .noticias-lista a:hover {
+            color: var(--secondary);
+        }
+
+        .radio-block {
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: white;
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+        }
+
+        .radio-block h3 {
+            margin-bottom: 1rem;
+        }
+
+        .radio-block a {
+            color: white;
+            text-decoration: underline;
+        }
+
+        /* ===== TRANSPARÊNCIA ===== */
+        .transparencia-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .relatorio-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            text-align: center;
+        }
+
+        .relatorio-card h4 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .relatorio-card ul {
+            list-style: none;
+        }
+
+        .relatorio-card li {
+            margin: 0.5rem 0;
+        }
+
+        .relatorio-card a {
+            color: var(--secondary);
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .relatorio-card a:hover {
+            color: var(--primary);
+        }
+
+        /* ===== CONTATOS ===== */
+        .contatos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            background: var(--white);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+        }
+
+        .contato-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .contato-item i {
+            font-size: 2rem;
+            color: var(--primary);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            transition: background 0.3s;
+        }
+
+        .social-links a:hover {
+            background: var(--secondary);
+        }
+
+        /* ===== RODAPÉ ===== */
+        footer {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        /* ===== RESPONSIVIDADE ===== */
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 1.5rem;
+            }
+            .hero-content p {
+                font-size: 1.2rem;
+            }
+            header {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            .nav-menu ul {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 1rem;
+            }
+            .noticias-destaque {
+                grid-template-columns: 1fr;
+            }
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Cabeçalho -->
+    <header>
+        <div class="logo">
+            <h1>ACAM</h1>
+        </div>
+        <nav class="nav-menu">
+            <ul>
+                <li><a href="index.html">Início</a></li>
+                <li><a href="trabalho.html">Nossa História</a></li>
+                <li><a href="atividades.html">Atividades</a></li>
+                <li><a href="noticias.html">Notícias</a></li>
+                <li><a href="transparencia.html">Transparência</a></li>
+                <li><a href="faca_parte.html">Faça parte</a></li>
+                <li><a href="index.html">Contatos</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section com a foto e filtro verde -->
+        <section class="hero" id="home">
+            <div class="hero-content">
+                <h1>ASSOCIAÇÃO COMUNITÁRIA AGRÍCOLA DE MUÇUMAGRO</h1>
+                <p>Muçumagro, João Pessoa - Paraíba</p>
+                <a href="file:///Z:/20261430015/Downloads/Arquivos%20(Site%20-%20ACAM)/site_pagina_nosso_trabalho.html" class="btn">Conheça nosso trabalho</a>
+            </div>
+        </section>
+
+        <!-- Capas -->
+        <section class="capas">
+            <div class="capa-card">
+                <h2>Seja um associado</h2>
+                <p>Faça parte da nossa comunidade e contribua com o bairro.</p>
+                <a href="https://www.instagram.com/acam_mussumagro/" class="btn" target="_blank">Guia de como chegar e documentação</a>
+            </div>
+            <div class="capa-card">
+                <h2>Seja um doador</h2>
+                <p>Apoie nossos projetos e transforme vidas.</p>
+                <a href="https://www.instagram.com/acam_mussumagro/" class="btn" target="_blank">Formulário de doação</a>
+            </div>
+            <div class="capa-card">
+                <h2>Ponto de cultura</h2>
+                <p>Arte, música e cidadania para todos.</p>
+                <a href="https://www.instagram.com/acam_mussumagro/" class="btn" target="_blank">Saiba mais</a>
+            </div>
+        </section>
+
+        <!-- Quem Somos (itens em linha única) -->
+        <section id="quem-somos">
+            <h2 class="section-title">Nossa Histório</h2>
+            <div class="quem-somos-grid">
+                <div class="quem-somos-item">
+                    <h3>Nossa História</h3>
+                    <p>A Associação Comunitária Agrícola de Muçumagro (ACAM) nasceu do sonho coletivo de moradores e agricultores da região de Muçumagro, em João Pessoa, que buscavam fortalecer a luta por direitos, dignidade e qualidade de vida. Desde o início, acreditamos no poder da união e da organização comunitária para superar desafios. Hoje, em parceria com a Central Única das Favelas da Paraíba (CUFA Paraíba), ampliamos nosso alcance e atuamos de forma integrada na promoção de cidadania, garantindo acesso à cultura, esporte, assistência social e desenvolvimento sustentável. Juntas, nossas instituições constroem pontes e criam oportunidades para que cada pessoa da comunidade possa florescer.</p>
+                </div>
+                <div class="quem-somos-item">
+                    <h3>Nossa Visão</h3>
+                    <p>Ser referência em transformação social na Paraíba, utilizando a cultura, o esporte e a assistência como ferramentas poderosas para despertar potencialidades, reduzir desigualdades e construir uma sociedade mais justa e inclusiva. Queremos ser reconhecidos pelo impacto positivo e pela capacidade de inspirar mudanças duradouras nas comunidades onde atuamos.</p>
+                </div>
+                <div class="quem-somos-item">
+                    <h3>Nossa Missão</h3>
+                    <p>Promover a inclusão social e o desenvolvimento comunitário de forma participativa, ética e transparente. Por meio de projetos e ações que valorizam a identidade local, buscamos garantir direitos, fortalecer vínculos e oferecer oportunidades que transformem realidades. Nossa missão é caminhar lado a lado com a comunidade, ouvindo suas necessidades e cocriando soluções que gerem autonomia e bem-estar.</p>
+                </div>
+                <div class="quem-somos-item">
+                    <h3>Valores</h3>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> <strong>Transparência:</strong> Agimos com clareza e honestidade em todas as nossas relações, prestando contas à comunidade e aos parceiros.</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Respeito:</strong> Valorizamos a diversidade, a história e a cultura local, promovendo um ambiente de acolhimento e escuta.</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Solidariedade:</strong> Acreditamos na força do coletivo e na importância de estender a mão construindo redes de apoio e cooperação.</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Compromisso:</strong> Temos dedicação com as causas sociais e com o desenvolvimento sustentável da comunidade.</li>
+                    </ul>
+                </div>
+                <div class="quem-somos-item">
+                    <h3>Diretoria</h3>
+                    <p>Conheça a equipe gestora da ACAM: um grupo de lideranças comunitárias, agricultores, educadores e jovens engajados, que dedicam seu tempo e conhecimento para guiar a associação rumo a seus objetivos. Cada membro da diretoria traz consigo a experiência da vivência local e o desejo genuíno de ver Muçumagro crescer com justiça e oportunidade para todos. Estamos sempre abertos ao diálogo e à participação da comunidade na construção de nosso caminho.</p>
+                </div>
+                <div class="quem-somos-item">
+                    <h3>Localização</h3>
+                    <p>Associação Comunitária Agrícola de Muçumagro - ACAM. R. Cupiúbas, 63 - Muçumagro, João Pessoa - PB, 58066-144</p>
+                    <div class="map-container">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126687.78908464287!2d-34.90451574999999!3d-7.136456999999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x7ace839019aa16d%3A0x5e431e6d0a2f6d63!2sJo%C3%A3o%20Pessoa%2C%20PB!5e0!3m2!1spt-BR!2sbr!4v1711234567890!5m2!1spt-BR!2sbr" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                    <p style="margin-top: 0.5rem;"><a href="https://maps.app.goo.gl/AsbtRzNRPX4eFK6B8" target="_blank">Ver no Google Maps</a></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Atividades -->
+        <section id="atividades">
+            <h2 class="section-title">Nossas Ações</h2>
+            <div class="atividades-grid">
+                <div class="atividade-card">
+                    <div class="atividade-img">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <div class="atividade-content">
+                        <h3>Saúde e Bem-estar</h3>
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> Psicologia</li>
+                            <li><i class="fas fa-check-circle"></i> Fisioterapia</li>
+                            <li><i class="fas fa-check-circle"></i> Psicofisiologia</li>
+                            <li><i class="fas fa-check-circle"></i> Psicopedagogia</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="atividade-card">
+                    <div class="atividade-img">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <div class="atividade-content">
+                        <h3>Cultura</h3>
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> Rádio Comunitária</li>
+                            <li><i class="fas fa-check-circle"></i> Biblioteca Comunal</li>
+                            <li><i class="fas fa-check-circle"></i> Ponto de Cultura</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="atividade-card">
+                    <div class="atividade-img">
+                        <i class="fas fa-futbol"></i>
+                    </div>
+                    <div class="atividade-content">
+                        <h3>Esportes</h3>
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> Jiu-Jitsu</li>
+                            <li><i class="fas fa-check-circle"></i> Capoeira</li>
+                            <li><i class="fas fa-check-circle"></i> Escola de Dança</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Notícias -->
+        <section id="noticias">
+            <h2 class="section-title">Notícias</h2>
+            <div class="noticias-destaque">
+                <div class="noticias-lista">
+                    <h3>Notícias recentes</h3>
+                    <ul>
+                        <li><a href="#">ACAM e CUFA lançam novo projeto cultural</a> - 20/03/2026</li>
+                        <li><a href="#">Mutirão de saúde no próximo sábado</a> - 18/03/2026</li>
+                        <li><a href="#">Inscrições abertas para oficina de capoeira</a> - 15/03/2026</li>
+                    </ul>
+                    <h3 style="margin-top:2rem;">ACAM EM DESTAQUE</h3>
+                    <p>Rádio Comunitária Mucumagro FM agora com programação 24h.</p>
+                </div>
+                <div class="radio-block">
+                    <h3><i class="fas fa-radio"></i> Rádio Comunitária</h3>
+                    <p>Ouça ao vivo: <a href="https://radios.com.br/aovivo/radio-web-mucumagro-fm/194525" target="_blank">Rádio Web Mucumagro FM</a></p>
+                    <p>Programas diários: entrevistas, informações comunitárias e músicas.</p>
+                    <p><strong>Ponto de cultura:</strong> Parceria Funjope e MINC</p>
+                    <p><strong>Biblioteca Comunal:</strong> <a href="#">Catálogo online</a></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Transparência -->
+        <section id="transparencia">
+            <h2 class="section-title">Transparência</h2>
+            <div class="transparencia-grid">
+                <div class="relatorio-card">
+                    <h4>Relatórios 2025</h4>
+                    <ul>
+                        <li><a href="#" download>📄 Relatório 2025 (PDF)</a></li>
+                        <li><a href="#" download>📊 Balanço patrimonial 2025 (PDF)</a></li>
+                    </ul>
+                </div>
+                <div class="relatorio-card">
+                    <h4>Relatórios 2026</h4>
+                    <ul>
+                        <li><a href="#" download>📄 Relatório 2026 (PDF)</a></li>
+                        <li><a href="#" download>📊 Balanço patrimonial 2026 (PDF)</a></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Faça Parte -->
+        <section id="faca-parte">
+            <h2 class="section-title">Faça parte</h2>
+            <div style="text-align:center; max-width:600px; margin:0 auto; background:white; padding:2rem; border-radius:var(--border-radius); box-shadow:var(--shadow);">
+                <p>Junte-se a nós como voluntário, associado ou doador.</p>
+                <a href="#" class="btn">Quero ser voluntário</a>
+                <a href="#" class="btn" style="background:var(--primary);">Quero doar</a>
+            </div>
+        </section>
+
+        <!-- Contatos -->
+        <section id="contatos">
+            <h2 class="section-title">Contatos</h2>
+            <div class="contatos-grid">
+                <div class="contato-item">
+                    <i class="fas fa-phone-alt"></i>
+                    <p>(83) 1234-5678</p>
+                </div>
+                <div class="contato-item">
+                    <i class="fas fa-envelope"></i>
+                    <p>contato@acamcufapb.org</p>
+                </div>
+                <div class="contato-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <p>Comunidade Muçumagro, João Pessoa</p>
+                </div>
+            </div>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 ACAM - CUFA Paraíba. Todos os direitos reservados.</p>
+        <p>Desenvolvido com 💚 pela comunidade</p>
+    </footer>
+
+</body>
+</html>

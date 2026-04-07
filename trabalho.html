@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nossa História - ACAM CUFA Paraíba</title>
+    <!-- Fontes Google -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Ícones Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* ===== RESET E VARIÁVEIS ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #332e7d;
+            --primary-light: #4c54af;
+            --secondary: #ff2f00;
+            --secondary-light: #ff774d;
+            --dark: #263238;
+            --light: #F5F9FF;
+            --gray: #ECEFF1;
+            --white: #FFFFFF;
+            --shadow: 0 10px 30px rgba(0,0,0,0.1);
+            --border-radius: 12px;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: var(--dark);
+            background-color: var(--light);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* ===== CABEÇALHO ===== */
+        header {
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo h1 {
+            font-size: 1.8rem;
+            color: var(--primary);
+        }
+
+        .nav-menu ul {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-menu a {
+            font-weight: 600;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-menu a:hover {
+            color: var(--secondary);
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: var(--secondary);
+            transition: width 0.3s;
+        }
+
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+
+        .btn-voltar {
+            background: var(--primary);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+
+        .btn-voltar:hover {
+            background: var(--primary-light);
+        }
+
+        /* ===== HERFO DA PÁGINA HISTÓRIA ===== */
+        .historia-hero {
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: white;
+            padding: 4rem 5%;
+            text-align: center;
+        }
+
+        .historia-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .historia-hero p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+        /* ===== LINHA DO TEMPO ===== */
+        .timeline {
+            padding: 4rem 5%;
+        }
+
+        .timeline-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 3rem;
+        }
+
+        .timeline-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .timeline-item {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            position: relative;
+            border-bottom: 4px solid var(--secondary);
+        }
+
+        .timeline-item .ano {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+
+        .timeline-item h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        /* ===== GALERIA DE FOTOS ===== */
+        .galeria {
+            padding: 4rem 5%;
+            background: var(--white);
+        }
+
+        .galeria-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 3rem;
+        }
+
+        .galeria-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .foto-card {
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s;
+        }
+
+        .foto-card:hover {
+            transform: scale(1.03);
+        }
+
+        .foto-img {
+            height: 250px;
+            background: linear-gradient(135deg, var(--gray), #ddd);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-size: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .foto-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .foto-legenda {
+            padding: 1rem;
+            text-align: center;
+            background: var(--white);
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        /* Placeholder para fotos */
+        .placeholder-img {
+            background: #ddd;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+        }
+
+        /* ===== SEÇÕES DE TEXTO ===== */
+        .historia-section {
+            padding: 4rem 5%;
+        }
+
+        .historia-section:nth-child(even) {
+            background: var(--white);
+        }
+
+        .historia-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .historia-content h2 {
+            color: var(--primary);
+            font-size: 2.2rem;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .historia-content h2::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: var(--secondary);
+            margin-top: 0.5rem;
+        }
+
+        .historia-content p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .historia-content blockquote {
+            font-style: italic;
+            font-size: 1.3rem;
+            color: var(--primary);
+            border-left: 5px solid var(--secondary);
+            padding-left: 2rem;
+            margin: 2rem 0;
+        }
+
+        /* ===== FOTOS EM DESTAQUE ===== */
+        .foto-destaque {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            margin: 3rem 0;
+            flex-wrap: wrap;
+        }
+
+        .foto-destaque .foto {
+            flex: 1;
+            min-width: 280px;
+            height: 300px;
+            background: var(--gray);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+        }
+
+        .foto-destaque .texto {
+            flex: 1;
+            min-width: 280px;
+        }
+
+        /* ===== RODAPÉ ===== */
+        footer {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        /* ===== BOTÃO ===== */
+        .btn {
+            display: inline-block;
+            background: var(--secondary);
+            color: var(--white);
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: background 0.3s, transform 0.2s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: var(--secondary-light);
+            transform: scale(1.05);
+        }
+
+        /* ===== RESPONSIVIDADE ===== */
+        @media (max-width: 768px) {
+            .historia-hero h1 {
+                font-size: 2rem;
+            }
+            .foto-destaque {
+                flex-direction: column;
+            }
+            .nav-menu ul {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Cabeçalho -->
+    <header>
+        <div class="logo">
+            <h1>ACAM</h1>
+        </div>
+        <nav class="nav-menu">
+            <ul>
+                <li><a href="index.html">Início</a></li>
+                <li><a href="trabalho.html" style="color: var(--secondary);">Nossa História</a></li>
+                <li><a href="atividades.html">Atividades</a></li>
+                <li><a href="noticias.html">Notícias</a></li>
+                <li><a href="transparencia.html">Transparência</a></li>
+                <li><a href="faca_parte.html">Faça parte</a></li>
+                <li><a href="index.html">Contatos</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero da Página História -->
+        <section class="historia-hero">
+            <h1>Nossa História</h1>
+            <p>Conheça a trajetória da Associação Comunitária Agrícola de Muçumagro e sua parceria com a CUFA Paraíba</p>
+        </section>
+
+        <!-- Primeira Seção: O Início -->
+        <section class="historia-section">
+            <div class="historia-content">
+                <h2>O Sonho que Tudo Começou</h2>
+                
+                <div class="foto-destaque">
+                    <div class="foto">
+                        <!-- Substitua pelo caminho da sua foto -->
+                        <div class="placeholder-img" style="height: 100%;">
+                            <i class="fas fa-tree" style="font-size: 4rem;"></i>
+                        </div>
+                    </div>
+                    <div class="texto">
+                        <p><strong>Muçumagro, década de 1990.</strong> Um grupo de moradores e agricultores da região começou a se reunir debaixo de uma árvore para discutir os desafios da comunidade: falta de acesso à saúde, educação precária, dificuldades no escoamento da produção agrícola e a necessidade de representação política.</p>
+                        <p>Foi ali, na simplicidade do encontro entre vizinhos, que nasceu a semente da Associação Comunitária Agrícola de Muçumagro (ACAM).</p>
+                    </div>
+                </div>
+
+                <p>Em 1995, após meses de reuniões e mutirões, a ACAM foi oficialmente fundada. O primeiro presidente, Seu João Maria da Silva, agricultor e líder comunitário, lembra: <em>"A gente não tinha nada, só a vontade de mudar. O primeiro documento foi escrito à mão, num caderno emprestado pela professora da escolinha."</em></p>
+
+                <blockquote>
+                    "A união dos moradores de Muçumagro sempre foi nossa maior força. Juntos, conquistamos o que parecia impossível."
+                </blockquote>
+            </div>
+        </section>
+
+        <!-- Segunda Seção: Primeiras Conquistas -->
+        <section class="historia-section">
+            <div class="historia-content">
+                <h2>Primeiras Conquistas</h2>
+
+                <div class="foto-destaque" style="flex-direction: row-reverse;">
+                    <div class="foto">
+                        <div class="placeholder-img" style="height: 100%;">
+                            <i class="fas fa-school" style="font-size: 4rem;"></i>
+                        </div>
+                    </div>
+                    <div class="texto">
+                        <p>Nos primeiros anos, a ACAM concentrou esforços em melhorias básicas:</p>
+                        <ul style="margin-left: 2rem; margin-bottom: 1rem;">
+                            <li><strong>1997</strong> – Construção da primeira sede comunitária (mutirão de 50 famílias)</li>
+                            <li><strong>1999</strong> – Criação da horta comunitária, garantindo alimento para 30 famílias</li>
+                            <li><strong>2001</strong> – Início das aulas de reforço escolar para crianças</li>
+                            <li><strong>2003</strong> – Primeira parceria com a prefeitura para melhorias na estrada de acesso</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <p>Em 2005, a ACAM deu um salto importante ao conquistar o primeiro projeto financiado por edital público: uma oficina de capacitação em agricultura familiar, beneficiando mais de 100 agricultores da região.</p>
+            </div>
+        </section>
+
+        <!-- Terceira Seção: Parceria com a CUFA -->
+        <section class="historia-section">
+            <div class="historia-content">
+                <h2>A Chegada da CUFA Paraíba</h2>
+
+                <p>Em 2015, um encontro mudaria os rumos da associação. Durante um evento comunitário, lideranças da ACAM conheceram representantes da Central Única das Favelas (CUFA) Paraíba. A troca de experiências foi imediata: ambos compartilhavam o mesmo propósito de transformação social através da cultura, esporte e cidadania.</p>
+
+                <div class="foto-destaque">
+                    <div class="foto">
+                        <div class="placeholder-img" style="height: 100%;">
+                            <i class="fas fa-handshake" style="font-size: 4rem;"></i>
+                        </div>
+                    </div>
+                    <div class="texto">
+                        <p><strong>2016</strong> – Oficialização da parceria ACAM + CUFA Paraíba.<br>
+                        <strong>2017</strong> – Inauguração do Ponto de Cultura, com recursos do MINC e Funjope.<br>
+                        <strong>2018</strong> – Criação da Rádio Comunitária Mucumagro FM.</p>
+                    </div>
+                </div>
+
+                <p>A parceria trouxe novos horizontes: oficinas de grafite, campeonatos de skate, rodas de capoeira e o fortalecimento das ações de assistência social. A CUFA contribuiu com metodologias de trabalho em favelas e a ACAM trouxe o conhecimento profundo da realidade local e da agricultura familiar.</p>
+            </div>
+        </section>
+
+        <!-- Linha do Tempo Visual -->
+        <section class="timeline">
+            <h2 class="timeline-title">Linha do Tempo</h2>
+            <div class="timeline-grid">
+                <div class="timeline-item">
+                    <div class="ano">1995</div>
+                    <h3>Fundação da ACAM</h3>
+                    <p>Moradores se organizam e fundam a associação comunitária.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="ano">2005</div>
+                    <h3>Primeiro Projeto</h3>
+                    <p>Capacitação em agricultura familiar beneficia 100 famílias.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="ano">2016</div>
+                    <h3>Parceria CUFA</h3>
+                    <p>Início da parceria com a Central Única das Favelas.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="ano">2017</div>
+                    <h3>Ponto de Cultura</h3>
+                    <p>Inauguração com apoio do MINC e Funjope.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="ano">2018</div>
+                    <h3>Rádio Comunitária</h3>
+                    <p>Nasce a Rádio Mucumagro FM.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="ano">2024</div>
+                    <h3>Reconhecimento</h3>
+                    <p>ACAM se torna referência em desenvolvimento comunitário na Paraíba.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Galeria de Fotos -->
+        <section class="galeria">
+            <h2 class="galeria-title">Registros da Nossa História</h2>
+            <div class="galeria-grid">
+                <!-- Foto 1 -->
+                <div class="foto-card">
+                    <div class="foto-img">
+                        <div class="placeholder-img">
+                            <i class="fas fa-image" style="font-size: 3rem;"></i>
+                        </div>
+                    </div>
+                    <div class="foto-legenda">Primeira sede da ACAM (1997)</div>
+                </div>
+                <!-- Foto 2 -->
+                <div class="foto-card">
+                    <div class="foto-img">
+                        <div class="placeholder-img">
+                            <i class="fas fa-image" style="font-size: 3rem;"></i>
+                        </div>
+                    </div>
+                    <div class="foto-legenda">Mutirão da horta comunitária (1999)</div>
+                </div>
+                <!-- Foto 3 -->
+                <div class="foto-card">
+                    <div class="foto-img">
+                        <div class="placeholder-img">
+                            <i class="fas fa-image" style="font-size: 3rem;"></i>
+                        </div>
+                    </div>
+                    <div class="foto-legenda">Primeira turma de reforço escolar (2001)</div>
+                </div>
+                <!-- Foto 4 -->
+                <div class="foto-card">
+                    <div class="foto-img">
+                        <div class="placeholder-img">
+                            <i class="fas fa-image" style="font-size: 3rem;"></i>
+                        </div>
+                    </div>
+                    <div class="foto-legenda">Inauguração do Ponto de Cultura (2017)</div>
+                </div>
+                <!-- Foto 5 -->
+                <div class="foto-card">
+                    <div class="foto-img">
+                        <div class="placeholder-img">
+                            <i class="fas fa-image" style="font-size: 3rem;"></i>
+                        </div>
+                    </div>
+                    <div class="foto-legenda">Rádio Comunitária Mucumagro FM (2018)</div>
+                </div>
+                <!-- Foto 6 -->
+                <div class="foto-card">
+                    <div class="foto-img">
+                        <div class="placeholder-img">
+                            <i class="fas fa-image" style="font-size: 3rem;"></i>
+                        </div>
+                    </div>
+                    <div class="foto-legenda">Oficina de capoeira com a CUFA (2022)</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção: Projetos Atuais -->
+        <section class="historia-section">
+            <div class="historia-content">
+                <h2>Projetos Atuais</h2>
+                <p>Hoje, a ACAM em parceria com a CUFA Paraíba mantém diversos projetos que impactam diretamente a vida da comunidade:</p>
+                
+                <ul style="margin: 2rem 0 2rem 2rem;">
+                    <li><strong>Saúde em Ação:</strong> Atendimentos de psicologia, fisioterapia e psicopedagogia para mais de 200 famílias.</li>
+                    <li><strong>Cultura Viva:</strong> Ponto de Cultura com oficinas de música, dança e artes plásticas.</li>
+                    <li><strong>Esporte Cidadão:</strong> Escolinhas de jiu-jitsu, capoeira e futebol para crianças e jovens.</li>
+                    <li><strong>Rádio Mucumagro FM:</strong> Programação 24h com informação, música e entrevistas.</li>
+                    <li><strong>Biblioteca Comunal:</strong> Acervo com mais de 1.000 livros para consulta e empréstimo.</li>
+                </ul>
+
+                <div class="foto-destaque">
+                    <div class="foto">
+                        <div class="placeholder-img" style="height: 100%;">
+                            <i class="fas fa-users" style="font-size: 4rem;"></i>
+                        </div>
+                    </div>
+                    <div class="texto">
+                        <p><strong>+500 famílias</strong> atendidas diretamente pelos projetos da ACAM e CUFA na região de Muçumagro.</p>
+                        <p><strong>+50 voluntários</strong> ativos, entre profissionais da saúde, educadores, artistas e esportistas.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Chamada para ação -->
+        <section class="historia-hero" style="background: var(--secondary);">
+            <h2>Faça parte dessa história</h2>
+            <p>Junte-se a nós como voluntário, associado ou doador e ajude a construir o futuro de Muçumagro.</p>
+            <a href="index.html#faca-parte" class="btn" style="background: var(--primary); margin-top: 2rem;">Quero participar</a>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 ACAM - CUFA Paraíba. Todos os direitos reservados.</p>
+        <p><a href="index.html" style="color: var(--secondary);">Voltar para a página inicial</a></p>
+    </footer>
+
+</body>
+</html>
