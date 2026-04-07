@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Faça parte - ACAM</title>
+    <title>Faça parte - ACAM CUFA Paraíba</title>
     <!-- Fontes Google -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <!-- Ícones Font Awesome -->
@@ -146,9 +146,10 @@
             color: var(--dark);
         }
 
+        /* CORREÇÃO: Altura fixa no container */
         .form-container {
             width: 100%;
-            min-height: 800px; /* Ajuste conforme o tamanho do seu formulário */
+            height: 750px;
             border-radius: var(--border-radius);
             overflow: hidden;
         }
@@ -157,6 +158,19 @@
             width: 100%;
             height: 100%;
             border: none;
+        }
+
+        /* Responsividade para o formulário */
+        @media (max-width: 768px) {
+            .form-container {
+                height: 850px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .form-container {
+                height: 1000px;
+            }
         }
 
         /* ===== RODAPÉ ===== */
@@ -172,7 +186,7 @@
             color: var(--secondary);
         }
 
-        /* ===== RESPONSIVIDADE ===== */
+        /* ===== RESPONSIVIDADE GERAL ===== */
         @media (max-width: 768px) {
             .page-hero h1 {
                 font-size: 2rem;
@@ -198,7 +212,7 @@
         <nav class="nav-menu">
             <ul>
                 <li><a href="index.html">Início</a></li>
-                <li><a href="trabalho.html">Nosso Trabalho</a></li>
+                <li><a href="trabalho.html">Nossa História</a></li>
                 <li><a href="atividades.html">Atividades</a></li>
                 <li><a href="noticias.html">Notícias</a></li>
                 <li><a href="transparencia.html">Transparência</a></li>
@@ -212,7 +226,7 @@
         <!-- Hero -->
         <section class="page-hero">
             <h1>Faça parte</h1>
-            <p>Preencha o formulário abaixo e junte-se a nós como voluntário, associado ou doador</p>
+            <p>Nos faça uma visita ou preencha o formulário abaixo e junte-se a nós.</p>
         </section>
 
         <!-- Formulário -->
@@ -221,19 +235,14 @@
                 <h2>Formulário de inscrição</h2>
                 <p>Todos os campos são obrigatórios. Em breve entraremos em contato.</p>
                 <div class="form-container">
-                    <!--
-                        INSTRUÇÃO: Substitua o src do iframe pelo link de incorporação do seu formulário.
-                        No Google Forms: abra seu formulário, clique em "Enviar" > ícone de link (>)
-                        > "Incorporar HTML" e copie o src do iframe.
-                    -->
-                    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfalks-5F_lWWQeYVg5-pasMKKMKFpOmZbyX25zRmHVGovGcw/viewform?embedded=true" width="100%" height="1600" frameborder="0" marginheight="0" marginwidth="0">Carregando…</iframe>
+                    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfalks-5F_lWWQeYVg5-pasMKKMKFpOmZbyX25zRmHVGovGcw/viewform?embedded=true" frameborder="0" marginwidth="0" marginheight="0">Carregando…</iframe>
                 </div>
             </div>
         </section>
     </main>
 
     <footer>
-        <p>&copy; 2026 ACAM - CUFA Paraíba. Todos os direitos reservados.</p>
+        <p>&copy; 2026 ACAM. Todos os direitos reservados.</p>
         <p><a href="index.html">Voltar para a página inicial</a></p>
     </footer>
 
